@@ -1,0 +1,31 @@
+name: "Tamarind"
+run-name: "ESTUARY"
+"on":
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+concurrency:
+  group: "COLUMN-${{ github.workflow }}"
+  cancel-in-progress: false
+jobs:
+  haven:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Orbit.outputs.page_url }}
+    steps:
+      - name: "SAFFRON"
+        uses: actions/checkout@v7
+      - name: "JADE"
+        uses: actions/configure-pages@v5
+      - name: "terrace"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: "Snowfall"
+        id: Orbit
+        uses: actions/deploy-pages@v4
